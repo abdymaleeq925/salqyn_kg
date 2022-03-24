@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        {% if request.user.is_authenticated %}
+        <h6>Hello, {{ request.user.username }}</h6>
+        <a href="{% url 'logout' %}"><button>Log out</button></a>
+        {% else %}
+        <a href="{% url 'sign_in' %}"><button>Log in</button></a>
+        {% endif %}
+    </ul>
+    {% for category in categories %}
+        <a href="">{{ category.name }}</a>
+    {% endfor %}
+
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <h3>Category: {{ post.category }}</h3>
+        <img src="{{post.image.url}}" alt="" width="550" height="300">
+        <p>{{ post.text }}</p>
+        <p>{{ post.author }} - Created at: {{ post.created }}</p>
+    {% endfor %}
+</body>
+</html>
