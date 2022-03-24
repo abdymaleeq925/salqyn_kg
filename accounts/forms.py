@@ -1,5 +1,5 @@
 from django import forms
-
+from django.contrib.auth.models import User
 # 2 types of forms:
 # 1) ModelForm - Based on model field
 # 2) Form - Not based on model field
