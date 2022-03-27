@@ -10,3 +10,7 @@ def index(request):
         "categories": categories,
     }
     return render(request, "index.html", context=context)
+
+
+def get_post_list(request):
+    return render(request, "post_list.html")
