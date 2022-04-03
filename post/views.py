@@ -13,4 +13,8 @@ def index(request):
 
 
 def get_post_list(request):
-    return render(request, "post_list.html")
+    posts = Post.objects.filter(is_active=True)
+    context = {
+        "posts": posts,
+    }
+    return render(request, "post_list.html", context=context)
