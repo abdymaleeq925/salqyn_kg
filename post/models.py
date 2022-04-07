@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class Category(models.Model):
@@ -28,9 +29,14 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    name = models.CharField("Name", max_length=50)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments", null=True)
     comment = models.TextField("Comments")
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __str__(self):
-        return self.name
+        return str(self.comment)[:50]
+
