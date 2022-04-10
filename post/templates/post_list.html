@@ -32,6 +32,7 @@
               		</div>
               	</div>
                 <h3 class="heading"><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+                <span class="badge badge-primary">{{ post.category }}</span>
                 <p>{{ post.text|truncatewords:15 }}</p>
               </div>
             </div>
