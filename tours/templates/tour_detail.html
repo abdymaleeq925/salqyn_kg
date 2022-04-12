@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ tour.title }}
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/static/images/blog_background.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">{{ tour.title }}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">Blog <i class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 order-md-last ftco-animate py-md-5 mt-md-5">
+            <h2 class="mb-3">{{ tour.title }}</h2>
+            <h3 class="mb-3">{{ tour.price }} KGS</h3>
+            <p>
+              <img src="{{ tour.image.url }}" alt="" class="img-fluid">
+            </p>
+            <p>{{ tour.description }}</p>
+
+          <div class="list-group">
+            {% for regular_tour in tour.regulartour_set.all %}
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Start: {{ regular_tour.start }} - End: {{ regular_tour.end }}</h5>
+                  <small>Places: {{ regular_tour.places_count }}</small>
+                </div>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tour_modal">Book</button>
+                <p class="mb-1">Some placeholder content in a paragraph.</p>
+                <small>And some small print.</small>
+              </a>
+            {% empty %}
+              <h3 style="border: 1px solid black;"> No Regular Tours </h3>
+            {% endfor %}
+          </div>
+        </div>
+        </div>
+      </div>
+    </section> <!-- .section -->
+
+    <div class="modal fade" id="tour_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
