@@ -1,18 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
-    <h2>Sign in to site.</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Sign in</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <form style="margin: 6rem 0;" action="#" method="post">
+      <h2>Sign In</h2>
+        <p>
+            <label for="id_username" class="floatLabel">Username:</label>
+            {{ form.username }}
+        </p>
+        <p>
+            <label for="id_password" class="floatLabel">Password:</label>
+            {{ form.password }}
+            {% csrf_token %}
+        </p>
+        <p>
+            <input type="submit" value="Sign in" id="submit">
+        </p>
+     </form>
+</div>
+
+{% endblock %}

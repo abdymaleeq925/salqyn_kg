@@ -10,14 +10,11 @@
 {% block content %}
 
 <div class="container">
-    <form style="margin: 6rem 0;" action="#" method="post">
-      <h2>Sign Up</h2>
-
-        {{ user_form }}
-
+    <form style="margin: 6rem 0;" method="post">
+      <h2>Create a post</h2>
         {% csrf_token %}
-
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Create post</button>
      </form>
 </div>
 

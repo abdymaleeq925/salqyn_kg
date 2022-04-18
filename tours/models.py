@@ -40,7 +40,7 @@ class RegularTour(models.Model):
         ordering = ['-start']
 
     def __str__(self):
-        return f"{self.tour.title} - {self.start}"
+        return f"{self.tour.title} - {self.start.date()}"
 
 
 class TourBooking(models.Model):

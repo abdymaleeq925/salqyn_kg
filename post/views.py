@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.views.generic import FormView
 from .models import Post, Category, Comment
 from .forms import CommentForm
 
@@ -47,3 +48,21 @@ def get_post_detail(request, pk):
             "comments": comments,
         }
     return render(request, 'post_detail.html', context=context)
+
+
+from .forms import PostCreateForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class PostCreateView(LoginRequiredMixin, FormView):
+    template_name = "post_create.html"
+    form_class = PostCreateForm
+    success_url = "/"
+    login_url = "sign_in"
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.author = self.request.user
+        instance.save()
+
+        return super().form_valid(form)
